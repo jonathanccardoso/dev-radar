@@ -17,21 +17,25 @@ function App() {
   // working with the state
   const [devs, setDevs] = useState([]);
 
-  useEfect(()=>{
+  useEffect(()=>{
     async function loadDevs() {
       const response = await api.get('/devs');
 
       setDevs(response.data);
+      // console.log(response.data);
     }
 
     loadDevs();
   }, []);
 
-  async function handleAddDev(data){    
+  async function handleAddDev(data){
+    console.log("response.data");
+
     const response = await api.post('/devs', data);
     
     // to add dev on list in react
     setDevs([...devs, response.data]);
+    console.log(response.data);
   }
 
   return (

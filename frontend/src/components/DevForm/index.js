@@ -8,35 +8,35 @@ function DevForm( { onSubmit} ) {
 
     // logic for rendering when the component is changed
     useEffect(()=> {
-        navigator.geolocation.getCurrentPosition(
+      navigator.geolocation.getCurrentPosition(
         (position) => {
-            const { latitude, longitude } = position.coords;
+          const { latitude, longitude } = position.coords;
 
-            setLatitude(latitude);
-            setLongitude(longitude);
+          setLatitude(latitude);
+          setLongitude(longitude);
         },
         (err) => {
-            console.log(err);
+          console.log(err);
         },
         {
-            // can pass parameters to the function
-            timeout: 30000,
+          // can pass parameters to the function
+          timeout: 30000,
         },
-        )
+      )
     }, []);
 
     async function handleSubmit(e) {
-        e.preventDefault();
+      e.preventDefault();
 
-        await onSubmit({
-            github_username,
-            techs,
-            latitude,
-            longitude,
-        });
+      await onSubmit({
+        github_username,
+        techs,
+        latitude,
+        longitude,
+      });
 
-        setGithubUserName('');
-        setTechs('');
+      setGithubUserName('');
+      setTechs('');
     };
 
     return (
